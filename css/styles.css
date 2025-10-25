@@ -1,0 +1,517 @@
+/* ========================================
+   VARIABLES Y RESET
+======================================== */
+
+:root {
+    /* Colores principales */
+    --color-primary: #4A4A4A;        /* Gris oscuro metálico */
+    --color-secondary: #0057B8;      /* Azul Honda */
+    --color-accent: #C8102E;         /* Rojo Honda (opcional) */
+    --color-light: #F5F5F5;          /* Blanco humo */
+    --color-gray: #D9D9D9;           /* Gris claro */
+    --color-dark: #1E1E1E;           /* Negro suave */
+    
+    /* Colores de fondo */
+    --bg-primary: #FFFFFF;
+    --bg-secondary: #F5F5F5;
+    --bg-dark: #1E1E1E;
+    
+    /* Colores de texto */
+    --text-primary: #1E1E1E;
+    --text-secondary: #4A4A4A;
+    --text-light: #FFFFFF;
+    
+    /* Espaciado */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 4rem;
+    --spacing-xl: 6rem;
+    
+    /* Bordes */
+    --border-radius: 8px;
+    --border-radius-lg: 16px;
+    
+    /* Sombras */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.15);
+    --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.2);
+    
+    /* Transiciones */
+    --transition: all 0.3s ease;
+}
+
+/* Tema oscuro */
+body.dark-mode {
+    --bg-primary: #1E1E1E;
+    --bg-secondary: #2A2A2A;
+    --text-primary: #F5F5F5;
+    --text-secondary: #D9D9D9;
+}
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    transition: var(--transition);
+}
+
+/* ========================================
+   UTILIDADES
+======================================== */
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+    color: var(--text-primary);
+}
+
+.section-subtitle {
+    text-align: center;
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-lg);
+    font-size: 1.1rem;
+}
+
+/* Botones */
+.btn {
+    display: inline-block;
+    padding: 12px 32px;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+    cursor: pointer;
+    border: none;
+    font-size: 1rem;
+}
+
+.btn-primary {
+    background-color: var(--color-secondary);
+    color: var(--text-light);
+}
+
+.btn-primary:hover {
+    background-color: #004494;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--text-light);
+    border: 2px solid var(--text-light);
+}
+
+.btn-secondary:hover {
+    background-color: var(--text-light);
+    color: var(--color-dark);
+}
+
+/* ========================================
+   HEADER Y NAVEGACIÓN
+======================================== */
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(30, 30, 30, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    box-shadow: var(--shadow-sm);
+}
+
+.navbar {
+    padding: 1rem 0;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.logo-img {
+    height: 40px;
+    width: auto;
+}
+
+.logo-text {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-light);
+}
+
+/* Menú de navegación */
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-menu a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+    position: relative;
+}
+
+.nav-menu a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-secondary);
+    transition: var(--transition);
+}
+
+.nav-menu a:hover::after {
+    width: 100%;
+}
+
+/* Botón de menú móvil */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.menu-toggle span {
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-light);
+    transition: var(--transition);
+}
+
+/* Botón de tema */
+.theme-toggle {
+    background-color: var(--color-gray);
+    border: none;
+    padding: 8px 12px;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.theme-toggle:hover {
+    background-color: var(--color-secondary);
+}
+
+.moon-icon {
+    display: none;
+}
+
+body.dark-mode .sun-icon {
+    display: none;
+}
+
+body.dark-mode .moon-icon {
+    display: inline;
+}
+
+/* ========================================
+   HERO SECTION
+======================================== */
+
+.hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #4A4A4A 0%, #1E1E1E 100%);
+    background-image: url('../gallery/civic-hero.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    overflow: hidden;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        135deg,
+        rgba(30, 30, 30, 0.8) 0%,
+        rgba(74, 74, 74, 0.6) 100%
+    );
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: var(--text-light);
+    animation: fadeInUp 1s ease;
+}
+
+.hero-title {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-sm);
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin-bottom: var(--spacing-lg);
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+/* Indicador de scroll */
+.scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: var(--text-light);
+    z-index: 2;
+}
+
+.scroll-arrow {
+    font-size: 2rem;
+    animation: bounce 2s infinite;
+}
+
+/* ========================================
+   SECCIÓN SOBRE EL VEHÍCULO
+======================================== */
+
+.sobre {
+    padding: var(--spacing-xl) 0;
+    background-color: var(--bg-primary);
+}
+
+.sobre-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-lg);
+    align-items: center;
+    margin-top: var(--spacing-lg);
+}
+
+.sobre-text h3 {
+    font-size: 1.8rem;
+    margin-bottom: var(--spacing-md);
+    color: var(--color-secondary);
+}
+
+.sobre-text p {
+    margin-bottom: var(--spacing-md);
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+}
+
+.highlights {
+    list-style: none;
+    margin-top: var(--spacing-md);
+}
+
+.highlights li {
+    padding: 0.5rem 0;
+    font-size: 1.1rem;
+    color: var(--text-primary);
+}
+
+.sobre-image img {
+    width: 100%;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-lg);
+    transition: var(--transition);
+}
+
+.sobre-image img:hover {
+    transform: scale(1.05);
+}
+
+/* ========================================
+   SECCIONES GENERALES
+======================================== */
+
+.galeria,
+.ficha,
+.contacto {
+    padding: var(--spacing-xl) 0;
+}
+
+.galeria {
+    background-color: var(--bg-secondary);
+}
+
+.ficha {
+    background-color: var(--bg-primary);
+}
+
+.contacto {
+    background-color: var(--bg-secondary);
+}
+
+/* ========================================
+   FOOTER
+======================================== */
+
+.footer {
+    background-color: var(--color-dark);
+    color: var(--text-light);
+    padding: var(--spacing-md) 0;
+    text-align: center;
+}
+
+.footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-links a {
+    display: inline-block;
+    transition: var(--transition);
+}
+
+.social-links img {
+    width: 24px;
+    height: 24px;
+    filter: brightness(0) invert(1);
+}
+
+.social-links a:hover {
+    transform: translateY(-3px);
+}
+
+/* ========================================
+   ANIMACIONES
+======================================== */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+/* ========================================
+   RESPONSIVE - TABLET
+======================================== */
+
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+    
+    .sobre-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .nav-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: rgba(30, 30, 30, 0.98);
+        flex-direction: column;
+        padding: 2rem;
+        gap: 1rem;
+    }
+    
+    .nav-menu.active {
+        display: flex;
+    }
+    
+    .menu-toggle {
+        display: flex;
+    }
+}
+
+/* ========================================
+   RESPONSIVE - MÓVIL
+======================================== */
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .footer .container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
