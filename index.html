@@ -29,8 +29,7 @@
         <nav class="navbar">
             <div class="container">
                 <div class="logo">
-                    <img src="assets/logo-civic.png" alt="Honda Civic Logo" class="logo-img">
-                    <span class="logo-text">Civic 2013 EXL</span>
+                    <span class="logo-text">🚗 Civic 2013 EXL</span>
                 </div>
                 
                 <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
@@ -94,42 +93,206 @@
                         <li>✓ Sistema de audio premium</li>
                         <li>✓ Cámara de reversa</li>
                         <li>✓ Asientos de cuero</li>
+                        <li>✓ Control de crucero</li>
+                        <li>✓ Sistema de estabilidad VSA</li>
+                        <li>✓ Faros antiniebla</li>
                     </ul>
                 </div>
                 <div class="sobre-image">
-                    <!-- Placeholder para imagen -->
-                    <img src="gallery/civic-side.jpg" alt="Honda Civic 2013 lateral" loading="lazy">
+                    <div class="placeholder-image">
+                        <p>📸 Coloca aquí una foto lateral de tu Civic</p>
+                        <small>Guárdala en: gallery/civic-side.jpg</small>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- GALERÍA (la desarrollaremos en el siguiente paso) -->
+    <!-- GALERÍA -->
     <section class="galeria" id="galeria">
         <div class="container">
             <h2 class="section-title">Galería</h2>
             <p class="section-subtitle">Explora cada detalle del Civic</p>
+            
             <div class="gallery-grid" id="galleryGrid">
-                <!-- Las imágenes se cargarán aquí -->
+                <!-- Las imágenes se generarán aquí desde JavaScript -->
             </div>
+        </div>
+        
+        <!-- Modal para ver imágenes en grande -->
+        <div class="gallery-modal" id="galleryModal">
+            <span class="modal-close" id="modalClose">&times;</span>
+            <img class="modal-content" id="modalImg" alt="Vista ampliada">
+            <div class="modal-caption" id="modalCaption"></div>
+            <button class="modal-prev" id="modalPrev">&#10094;</button>
+            <button class="modal-next" id="modalNext">&#10095;</button>
         </div>
     </section>
 
-    <!-- FICHA TÉCNICA (la desarrollaremos después) -->
+    <!-- FICHA TÉCNICA -->
     <section class="ficha" id="ficha">
         <div class="container">
             <h2 class="section-title">Ficha Técnica</h2>
-            <div class="specs-table">
-                <!-- Tabla de especificaciones -->
+            <p class="section-subtitle">Especificaciones completas</p>
+            
+            <div class="specs-container">
+                <!-- Motor y Rendimiento -->
+                <div class="specs-category">
+                    <h3>🔧 Motor y Rendimiento</h3>
+                    <div class="specs-grid">
+                        <div class="spec-item">
+                            <span class="spec-label">Motor</span>
+                            <span class="spec-value">1.8L i-VTEC 4 cilindros</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Potencia</span>
+                            <span class="spec-value">140 HP @ 6,500 rpm</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Torque</span>
+                            <span class="spec-value">174 Nm @ 4,300 rpm</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Transmisión</span>
+                            <span class="spec-value">Automática 5 velocidades</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Tracción</span>
+                            <span class="spec-value">Delantera (FWD)</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">0-100 km/h</span>
+                            <span class="spec-value">~9.5 segundos</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Consumo -->
+                <div class="specs-category">
+                    <h3>⛽ Consumo de Combustible</h3>
+                    <div class="specs-grid">
+                        <div class="spec-item">
+                            <span class="spec-label">Ciudad</span>
+                            <span class="spec-value">8.4 L/100km</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Carretera</span>
+                            <span class="spec-value">5.9 L/100km</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Combinado</span>
+                            <span class="spec-value">7.1 L/100km</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Tanque</span>
+                            <span class="spec-value">50 litros</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Dimensiones -->
+                <div class="specs-category">
+                    <h3>📏 Dimensiones y Peso</h3>
+                    <div class="specs-grid">
+                        <div class="spec-item">
+                            <span class="spec-label">Longitud</span>
+                            <span class="spec-value">4,525 mm</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Ancho</span>
+                            <span class="spec-value">1,755 mm</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Altura</span>
+                            <span class="spec-value">1,435 mm</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Distancia entre ejes</span>
+                            <span class="spec-value">2,670 mm</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Peso</span>
+                            <span class="spec-value">1,295 kg</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Capacidad de cajuela</span>
+                            <span class="spec-value">354 litros</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Seguridad y Tecnología -->
+                <div class="specs-category">
+                    <h3>🛡️ Seguridad y Tecnología</h3>
+                    <div class="specs-grid">
+                        <div class="spec-item full-width">
+                            <span class="spec-label">Airbags</span>
+                            <span class="spec-value">6 (frontales, laterales y cortina)</span>
+                        </div>
+                        <div class="spec-item full-width">
+                            <span class="spec-label">Frenos</span>
+                            <span class="spec-value">ABS con EBD y Brake Assist</span>
+                        </div>
+                        <div class="spec-item full-width">
+                            <span class="spec-label">Estabilidad</span>
+                            <span class="spec-value">Control de estabilidad VSA</span>
+                        </div>
+                        <div class="spec-item full-width">
+                            <span class="spec-label">Cámara</span>
+                            <span class="spec-value">Cámara de reversa multi-ángulo</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- CONTACTO (lo desarrollaremos después) -->
+    <!-- CONTACTO -->
     <section class="contacto" id="contacto">
         <div class="container">
-            <h2 class="section-title">Contacto</h2>
-            <!-- Formulario y redes sociales -->
+            <h2 class="section-title">Contacto y Ubicación</h2>
+            <p class="section-subtitle">Conéctate conmigo</p>
+            
+            <div class="contacto-content">
+                <!-- Redes Sociales -->
+                <div class="contacto-redes">
+                    <h3>📱 Sígueme en redes</h3>
+                    <div class="social-cards">
+                        <a href="https://instagram.com/tu_usuario" target="_blank" class="social-card instagram">
+                            <div class="social-icon">📷</div>
+                            <div class="social-info">
+                                <h4>Instagram</h4>
+                                <p>@tu_usuario</p>
+                            </div>
+                        </a>
+                        
+                        <a href="https://facebook.com/tu_usuario" target="_blank" class="social-card facebook">
+                            <div class="social-icon">📘</div>
+                            <div class="social-info">
+                                <h4>Facebook</h4>
+                                <p>Mi perfil</p>
+                            </div>
+                        </a>
+                        
+                        <a href="https://wa.me/1234567890?text=Hola,%20vi%20tu%20Honda%20Civic" target="_blank" class="social-card whatsapp">
+                            <div class="social-icon">💬</div>
+                            <div class="social-info">
+                                <h4>WhatsApp</h4>
+                                <p>Envíame un mensaje</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Código QR -->
+                <div class="contacto-qr">
+                    <h3>📲 Código QR</h3>
+                    <div class="qr-container">
+                        <div id="qrCode"></div>
+                        <p>Escanea para compartir</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -138,13 +301,16 @@
         <div class="container">
             <p>&copy; 2025 Honda Civic 2013 EXL. Todos los derechos reservados.</p>
             <div class="social-links">
-                <a href="#" aria-label="Instagram"><img src="assets/instagram-icon.svg" alt="Instagram"></a>
-                <a href="#" aria-label="Facebook"><img src="assets/facebook-icon.svg" alt="Facebook"></a>
-                <a href="#" aria-label="WhatsApp"><img src="assets/whatsapp-icon.svg" alt="WhatsApp"></a>
+                <a href="https://instagram.com/tu_usuario" target="_blank" aria-label="Instagram">📷</a>
+                <a href="https://facebook.com/tu_usuario" target="_blank" aria-label="Facebook">📘</a>
+                <a href="https://wa.me/1234567890" target="_blank" aria-label="WhatsApp">💬</a>
             </div>
         </div>
     </footer>
 
+    <!-- QR Code Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    
     <!-- JavaScript -->
     <script src="js/main.js"></script>
 </body>
