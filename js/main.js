@@ -76,34 +76,34 @@ window.addEventListener('scroll', () => {
 // Array con tus fotos del Civic
 const galleryImages = [
     {
-        src: 'gallery/civic-1.jpg',
-        alt: 'Honda Civic 2013 EXL - Foto 1',
-        caption: 'Honda Civic 2013 EXL - Gris Plateado'
+        src: 'gallery/civic-front.jpg',
+        alt: 'Honda Civic 2013 EXL - Vista frontal',
+        caption: 'Vista frontal del Honda Civic 2013 EXL'
     },
     {
-        src: 'gallery/civic-2.jpg',
-        alt: 'Honda Civic 2013 EXL - Foto 2',
-        caption: 'Vista del Civic'
+        src: 'gallery/civic-side.jpg',
+        alt: 'Honda Civic 2013 EXL - Vista lateral',
+        caption: 'Elegante perfil lateral'
     },
     {
-        src: 'gallery/civic-3.jpg',
-        alt: 'Honda Civic 2013 EXL - Foto 3',
+        src: 'gallery/civic-back.jpg',
+        alt: 'Honda Civic 2013 EXL - Vista trasera',
+        caption: 'Vista trasera del Civic'
+    },
+    {
+        src: 'gallery/civic-interior.jpg',
+        alt: 'Honda Civic 2013 EXL - Interior',
+        caption: 'Interior con acabados de lujo'
+    },
+    {
+        src: 'gallery/civic-motor.jpg',
+        alt: 'Honda Civic 2013 EXL - Motor',
+        caption: 'Motor 1.8L i-VTEC'
+    },
+    {
+        src: 'gallery/civic-detail.jpg',
+        alt: 'Honda Civic 2013 EXL - Detalle',
         caption: 'Detalles del vehículo'
-    },
-    {
-        src: 'gallery/civic-4.jpg',
-        alt: 'Honda Civic 2013 EXL - Foto 4',
-        caption: 'Interior del Civic'
-    },
-    {
-        src: 'gallery/civic-5.jpg',
-        alt: 'Honda Civic 2013 EXL - Foto 5',
-        caption: 'Más vistas del Civic'
-    },
-    {
-        src: 'gallery/civic-6.jpg',
-        alt: 'Honda Civic 2013 EXL - Foto 6',
-        caption: 'Honda Civic 2013 EXL'
     }
 ];
 
