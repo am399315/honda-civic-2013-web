@@ -138,13 +138,16 @@ function openModal(index) {
     modalImg.alt = image.alt;
     modalCaption.textContent = image.caption;
     galleryModal.classList.add('active');
+    galleryModal.style.display = 'block';
     document.body.style.overflow = 'hidden';
 }
 
 // Cerrar modal
 function closeModal() {
     galleryModal.classList.remove('active');
+    galleryModal.style.display = 'none';
     document.body.style.overflow = 'auto';
+    document.body.style.overflowX = 'hidden';
 }
 
 // Navegación en el modal
@@ -165,24 +168,55 @@ function showNextImage() {
 }
 
 // Event listeners del modal
-modalClose.addEventListener('click', closeModal);
-modalPrev.addEventListener('click', showPrevImage);
-modalNext.addEventListener('click', showNextImage);
+if (modalClose) {
+    modalClose.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        closeModal();
+    });
+}
+
+if (modalPrev) {
+    modalPrev.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        showPrevImage();
+    });
+}
+
+if (modalNext) {
+    modalNext.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        showNextImage();
+    });
+}
 
 // Cerrar modal al hacer clic fuera de la imagen
-galleryModal.addEventListener('click', (e) => {
-    if (e.target === galleryModal) {
-        closeModal();
-    }
-});
+if (galleryModal) {
+    galleryModal.addEventListener('click', (e) => {
+        if (e.target === galleryModal) {
+            closeModal();
+        }
+    });
+}
 
 // Navegación con teclado
 document.addEventListener('keydown', (e) => {
     if (!galleryModal.classList.contains('active')) return;
     
-    if (e.key === 'Escape') closeModal();
-    if (e.key === 'ArrowLeft') showPrevImage();
-    if (e.key === 'ArrowRight') showNextImage();
+    if (e.key === 'Escape' || e.key === 'Esc') {
+        e.preventDefault();
+        closeModal();
+    }
+    if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        showPrevImage();
+    }
+    if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        showNextImage();
+    }
 });
 
 // Cargar galería al inicio
