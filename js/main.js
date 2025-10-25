@@ -70,40 +70,40 @@ window.addEventListener('scroll', () => {
 });
 
 // ========================================
-// GALERÍA DE IMÁGENES
+// GALERÍA DE IMÁGENES - TUS FOTOS REALES
 // ========================================
 
-// Array de imágenes (puedes agregar tus propias fotos aquí)
+// Array con tus fotos del Civic
 const galleryImages = [
     {
-        src: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=800',
-        alt: 'Honda Civic - Vista frontal',
-        caption: 'Vista frontal del Honda Civic 2013 EXL'
+        src: 'gallery/civic-1.jpg',
+        alt: 'Honda Civic 2013 EXL - Foto 1',
+        caption: 'Honda Civic 2013 EXL - Gris Plateado'
     },
     {
-        src: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800',
-        alt: 'Honda Civic - Vista lateral',
-        caption: 'Elegante perfil lateral'
+        src: 'gallery/civic-2.jpg',
+        alt: 'Honda Civic 2013 EXL - Foto 2',
+        caption: 'Vista del Civic'
     },
     {
-        src: 'https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=800',
-        alt: 'Honda Civic - Interior',
-        caption: 'Interior con acabados de lujo'
+        src: 'gallery/civic-3.jpg',
+        alt: 'Honda Civic 2013 EXL - Foto 3',
+        caption: 'Detalles del vehículo'
     },
     {
-        src: 'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=800',
-        alt: 'Honda Civic - Detalle',
-        caption: 'Detalles que marcan la diferencia'
+        src: 'gallery/civic-4.jpg',
+        alt: 'Honda Civic 2013 EXL - Foto 4',
+        caption: 'Interior del Civic'
     },
     {
-        src: 'https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=800',
-        alt: 'Honda Civic - Motor',
-        caption: 'Motor 1.8L i-VTEC'
+        src: 'gallery/civic-5.jpg',
+        alt: 'Honda Civic 2013 EXL - Foto 5',
+        caption: 'Más vistas del Civic'
     },
     {
-        src: 'https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=800',
-        alt: 'Honda Civic - Vista trasera',
-        caption: 'Vista trasera elegante'
+        src: 'gallery/civic-6.jpg',
+        alt: 'Honda Civic 2013 EXL - Foto 6',
+        caption: 'Honda Civic 2013 EXL'
     }
 ];
 
@@ -189,15 +189,15 @@ document.addEventListener('keydown', (e) => {
 loadGallery();
 
 // ========================================
-// CÓDIGO QR
+// CÓDIGO QR - APUNTA A TU INSTAGRAM
 // ========================================
 
 function generateQR() {
     const qrDiv = document.getElementById('qrCode');
     if (qrDiv && typeof QRCode !== 'undefined') {
-        // Genera QR con la URL actual del sitio
+        // Genera QR que apunta a tu Instagram
         new QRCode(qrDiv, {
-            text: window.location.href,
+            text: 'https://www.instagram.com/andres.esc_19',
             width: 200,
             height: 200,
             colorDark: '#1E1E1E',
@@ -209,12 +209,11 @@ function generateQR() {
 
 // Generar QR cuando cargue la página
 window.addEventListener('load', () => {
-    // Esperar un poco para asegurar que la librería QRCode esté cargada
     setTimeout(generateQR, 500);
 });
 
 // ========================================
-// ANIMACIONES AL HACER SCROLL (Intersection Observer)
+// ANIMACIONES AL HACER SCROLL
 // ========================================
 
 const observerOptions = {
@@ -272,52 +271,13 @@ if (footerText) {
 }
 
 // ========================================
-// ANIMACIÓN DE NÚMEROS (Counter Animation)
-// ========================================
-
-function animateCounter(element, target, duration = 2000) {
-    let start = 0;
-    const increment = target / (duration / 16);
-    
-    const timer = setInterval(() => {
-        start += increment;
-        if (start >= target) {
-            element.textContent = Math.floor(target);
-            clearInterval(timer);
-        } else {
-            element.textContent = Math.floor(start);
-        }
-    }, 16);
-}
-
-// ========================================
-// LAZY LOADING DE IMÁGENES
-// ========================================
-
-const imageObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const img = entry.target;
-            img.src = img.dataset.src || img.src;
-            img.classList.add('loaded');
-            observer.unobserve(img);
-        }
-    });
-});
-
-// Observar todas las imágenes con loading="lazy"
-document.querySelectorAll('img[loading="lazy"]').forEach(img => {
-    imageObserver.observe(img);
-});
-
-// ========================================
 // EFECTO PARALLAX EN EL HERO
 // ========================================
 
 window.addEventListener('scroll', () => {
     const scrolled = window.pageYOffset;
     const hero = document.querySelector('.hero');
-    if (hero) {
+    if (hero && scrolled < window.innerHeight) {
         hero.style.transform = `translateY(${scrolled * 0.5}px)`;
     }
 });
@@ -328,19 +288,10 @@ window.addEventListener('scroll', () => {
 
 console.log('%c🚗 Honda Civic 2013 EXL', 'color: #0057B8; font-size: 20px; font-weight: bold;');
 console.log('%cElegancia y rendimiento en cada kilómetro', 'color: #4A4A4A; font-size: 14px;');
-console.log('%cSitio desarrollado con ❤️', 'color: #C8102E; font-size: 12px;');
+console.log('%cSitio web de Andres Escolastico', 'color: #C8102E; font-size: 12px;');
 
 // ========================================
-// DETECTAR SI ES MÓVIL
-// ========================================
-
-const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-if (isMobile) {
-    console.log('📱 Navegando desde dispositivo móvil');
-}
-
-// ========================================
-// PRELOADER (OPCIONAL)
+// PRELOADER
 // ========================================
 
 window.addEventListener('load', () => {
