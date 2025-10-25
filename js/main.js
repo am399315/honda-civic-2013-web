@@ -6,6 +6,15 @@ const menuToggle = document.getElementById('menuToggle');
 const navMenu = document.getElementById('navMenu');
 const themeToggle = document.getElementById('themeToggle');
 const header = document.getElementById('header');
+const galleryGrid = document.getElementById('galleryGrid');
+const galleryModal = document.getElementById('galleryModal');
+const modalImg = document.getElementById('modalImg');
+const modalCaption = document.getElementById('modalCaption');
+const modalClose = document.getElementById('modalClose');
+const modalPrev = document.getElementById('modalPrev');
+const modalNext = document.getElementById('modalNext');
+
+let currentImageIndex = 0;
 
 // ========================================
 // MENÚ MÓVIL
@@ -14,8 +23,6 @@ const header = document.getElementById('header');
 // Abrir/cerrar menú en móviles
 menuToggle.addEventListener('click', () => {
     navMenu.classList.toggle('active');
-    
-    // Animación del icono hamburguesa
     menuToggle.classList.toggle('active');
 });
 
@@ -60,6 +67,150 @@ window.addEventListener('scroll', () => {
     } else {
         header.classList.remove('scrolled');
     }
+});
+
+// ========================================
+// GALERÍA DE IMÁGENES
+// ========================================
+
+// Array de imágenes (puedes agregar tus propias fotos aquí)
+const galleryImages = [
+    {
+        src: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=800',
+        alt: 'Honda Civic - Vista frontal',
+        caption: 'Vista frontal del Honda Civic 2013 EXL'
+    },
+    {
+        src: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800',
+        alt: 'Honda Civic - Vista lateral',
+        caption: 'Elegante perfil lateral'
+    },
+    {
+        src: 'https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=800',
+        alt: 'Honda Civic - Interior',
+        caption: 'Interior con acabados de lujo'
+    },
+    {
+        src: 'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=800',
+        alt: 'Honda Civic - Detalle',
+        caption: 'Detalles que marcan la diferencia'
+    },
+    {
+        src: 'https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=800',
+        alt: 'Honda Civic - Motor',
+        caption: 'Motor 1.8L i-VTEC'
+    },
+    {
+        src: 'https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=800',
+        alt: 'Honda Civic - Vista trasera',
+        caption: 'Vista trasera elegante'
+    }
+];
+
+// Generar galería
+function loadGallery() {
+    galleryGrid.innerHTML = '';
+    
+    galleryImages.forEach((image, index) => {
+        const galleryItem = document.createElement('div');
+        galleryItem.className = 'gallery-item';
+        galleryItem.innerHTML = `
+            <img src="${image.src}" alt="${image.alt}" loading="lazy">
+            <div class="gallery-overlay">
+                <span>🔍</span>
+            </div>
+        `;
+        
+        // Abrir modal al hacer clic
+        galleryItem.addEventListener('click', () => {
+            openModal(index);
+        });
+        
+        galleryGrid.appendChild(galleryItem);
+    });
+}
+
+// Abrir modal
+function openModal(index) {
+    currentImageIndex = index;
+    const image = galleryImages[index];
+    modalImg.src = image.src;
+    modalImg.alt = image.alt;
+    modalCaption.textContent = image.caption;
+    galleryModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+// Cerrar modal
+function closeModal() {
+    galleryModal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
+
+// Navegación en el modal
+function showPrevImage() {
+    currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+    const image = galleryImages[currentImageIndex];
+    modalImg.src = image.src;
+    modalImg.alt = image.alt;
+    modalCaption.textContent = image.caption;
+}
+
+function showNextImage() {
+    currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+    const image = galleryImages[currentImageIndex];
+    modalImg.src = image.src;
+    modalImg.alt = image.alt;
+    modalCaption.textContent = image.caption;
+}
+
+// Event listeners del modal
+modalClose.addEventListener('click', closeModal);
+modalPrev.addEventListener('click', showPrevImage);
+modalNext.addEventListener('click', showNextImage);
+
+// Cerrar modal al hacer clic fuera de la imagen
+galleryModal.addEventListener('click', (e) => {
+    if (e.target === galleryModal) {
+        closeModal();
+    }
+});
+
+// Navegación con teclado
+document.addEventListener('keydown', (e) => {
+    if (!galleryModal.classList.contains('active')) return;
+    
+    if (e.key === 'Escape') closeModal();
+    if (e.key === 'ArrowLeft') showPrevImage();
+    if (e.key === 'ArrowRight') showNextImage();
+});
+
+// Cargar galería al inicio
+loadGallery();
+
+// ========================================
+// CÓDIGO QR
+// ========================================
+
+function generateQR() {
+    const qrDiv = document.getElementById('qrCode');
+    if (qrDiv && typeof QRCode !== 'undefined') {
+        // Genera QR con la URL actual del sitio
+        new QRCode(qrDiv, {
+            text: window.location.href,
+            width: 200,
+            height: 200,
+            colorDark: '#1E1E1E',
+            colorLight: '#FFFFFF',
+            correctLevel: QRCode.CorrectLevel.H
+        });
+    }
+}
+
+// Generar QR cuando cargue la página
+window.addEventListener('load', () => {
+    // Esperar un poco para asegurar que la librería QRCode esté cargada
+    setTimeout(generateQR, 500);
 });
 
 // ========================================
@@ -121,9 +272,78 @@ if (footerText) {
 }
 
 // ========================================
+// ANIMACIÓN DE NÚMEROS (Counter Animation)
+// ========================================
+
+function animateCounter(element, target, duration = 2000) {
+    let start = 0;
+    const increment = target / (duration / 16);
+    
+    const timer = setInterval(() => {
+        start += increment;
+        if (start >= target) {
+            element.textContent = Math.floor(target);
+            clearInterval(timer);
+        } else {
+            element.textContent = Math.floor(start);
+        }
+    }, 16);
+}
+
+// ========================================
+// LAZY LOADING DE IMÁGENES
+// ========================================
+
+const imageObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const img = entry.target;
+            img.src = img.dataset.src || img.src;
+            img.classList.add('loaded');
+            observer.unobserve(img);
+        }
+    });
+});
+
+// Observar todas las imágenes con loading="lazy"
+document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+    imageObserver.observe(img);
+});
+
+// ========================================
+// EFECTO PARALLAX EN EL HERO
+// ========================================
+
+window.addEventListener('scroll', () => {
+    const scrolled = window.pageYOffset;
+    const hero = document.querySelector('.hero');
+    if (hero) {
+        hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+    }
+});
+
+// ========================================
 // CONSOLA DE BIENVENIDA
 // ========================================
 
 console.log('%c🚗 Honda Civic 2013 EXL', 'color: #0057B8; font-size: 20px; font-weight: bold;');
 console.log('%cElegancia y rendimiento en cada kilómetro', 'color: #4A4A4A; font-size: 14px;');
 console.log('%cSitio desarrollado con ❤️', 'color: #C8102E; font-size: 12px;');
+
+// ========================================
+// DETECTAR SI ES MÓVIL
+// ========================================
+
+const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+if (isMobile) {
+    console.log('📱 Navegando desde dispositivo móvil');
+}
+
+// ========================================
+// PRELOADER (OPCIONAL)
+// ========================================
+
+window.addEventListener('load', () => {
+    document.body.classList.add('loaded');
+    console.log('✅ Página cargada completamente');
+});
